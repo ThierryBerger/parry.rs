@@ -540,6 +540,7 @@ dependencies = [
 [[package]]
 name = "text_inject"
 version = "0.1.0"
+source = "git+https://github.com/Vrixyz/text_inject.git#9b92b289a21b5fd15d9d308677cb712b403f8780"
 dependencies = [
  "regex",
 ]
