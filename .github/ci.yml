@@ -2,7 +2,7 @@ name: nalgebra CI build
 
 on:
   push:
-    branches: [main]
+    branches: [main, ci_compare]
   pull_request:
     branches: [main]
 
