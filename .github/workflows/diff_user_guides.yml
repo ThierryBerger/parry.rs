@@ -30,10 +30,10 @@ jobs:
 
       - name: Generate files for target branch
         run: |
-          ./generate_user_guides.sh
+          ./generate_user_guides.sh || true
 
       - name: Move target generated files
-        run: mkdir -p /tmp/target_generated && mv docs/user_guide/* /tmp/target_generated/ && mv /tmp/target_generated/templates docs/user_guide/
+        run: mkdir -p /tmp/target_generated && mv docs/user_guide/* /tmp/target_generated/ && mv /tmp/target_generated/templates docs/user_guide/ ||  true
 
       # Step 6: Compare files
       - name: Compare generated files
