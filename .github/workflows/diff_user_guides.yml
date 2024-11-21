@@ -72,5 +72,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `### Comparison Result\n\n\`\`\`diff\n${comparisonResult}\n\`\`\``,
+              body: `### Comparison Result\n\n<details><summary>Details</summary>\n<p>\n\n\`\`\`diff\n${comparisonResult}\n\`\`\`\n\n</p>\n</details> `,
             });
