@@ -67,10 +67,25 @@ jobs:
               }
             }
 
+            // Construct the workflow run link
+            const runLink = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+            // Create the comment body
+            const commentBody = 
+              `### Comparison Result\n\n` +
+              `[View workflow run details](${runLink})` +
+              `<details><summary>Userguide diff introduced by this PR</summary>\n` +
+              `<p>\n\n` +
+              `\`\`\`diff\n` +
+              `${comparisonResult}\n` +
+              `\`\`\`\n\n` ;
+              `</p>\n` +
+              `</details>`;
+
             // Post new comment
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `### Comparison Result\n\n<details><summary>Details</summary>\n<p>\n\n\`\`\`diff\n${comparisonResult}\n\`\`\`\n\n</p>\n</details> `,
+              body: commentBody,
             });
