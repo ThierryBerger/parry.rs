@@ -357,15 +357,17 @@ A contact is described by the `Contact` structure:
 
 | Field    | Description                                                              |
 |--        | --                                                                       |
-| `world1` | The contact point on the first object expressed in the absolute coordinate system. |
-| `world2` | The contact point on the second object expressed in the absolute coordinate system. |
-| `normal1` | { /* TODO: it's not always in world space... */} The contact normal expressed in the absolute coordinate system. Points toward the first object's exterior. |
-| `normal2` | The contact normal expressed in the absolute coordinate system. Points toward the second object's exterior. If these contact data are expressed in world-space, this normal is equal to -normal1. |
-| `depth`  | The penetration depth of this contact. |
+| `point1` | Position of the contact on the first object. |
+| `point2` | Position of the contact on the second object. |
+| `normal1` | Contact normal, pointing towards the exterior of the first shape. |
+| `normal2` | Contact normal, pointing towards the exterior of the second shape. If these contact data are expressed in world-space, this normal is equal to `-normal1`. |
+| `dist`  | The penetration depth of this contact. If this is negative, this contact represents a penetration. |
 
+{ /* TODO: explain coordinate system used can be local or global, for example  `QueryDispatcher::contact` returns local, but `query::contact` returns "absolute" */}
+{ /* is it though ? I think we can just say absolute in conntext of `query::contact` ; and then a new paragraph pointing out dispatcher which returns local */ }
 
 Here, _absolute coordinate system_ is the set of axes that are not relative
-to any object. The last `depth` field requires some details. Sometimes, the
+to any object. The last `dist` field requires some details. Sometimes, the
 objects in contact are penetrating each other. Notably, if you are using
 **Parry** within the context of physics simulation, penetrations are
 unrealistic configurations where the inside of the two objects are overlapping.
