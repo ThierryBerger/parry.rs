@@ -363,11 +363,15 @@ A contact is described by the `Contact` structure:
 | `normal2` | Contact normal, pointing towards the exterior of the second shape. If these contact data are expressed in world-space, this normal is equal to `-normal1`. |
 | `dist`  | The penetration depth of this contact. If this is negative, this contact represents a penetration. |
 
-{ /* TODO: explain coordinate system used can be local or global, for example  `QueryDispatcher::contact` returns local, but `query::contact` returns "absolute" */}
-{ /* is it though ? I think we can just say absolute in conntext of `query::contact` ; and then a new paragraph pointing out dispatcher which returns local */ }
+:::warning
 
-Here, _absolute coordinate system_ is the set of axes that are not relative
-to any object. The last `dist` field requires some details. Sometimes, the
+In context of `query::contact`, `point1` and `point2` are expressed in _absolute coordinates_: which are not relative
+to any object. But when using lower level functions like `contact_cuboid_cuboid`
+(typically functions taking a `pos12: &Isometry<f32>`), `point1` and `point2` are expressed in _relative coordinates_ to `Shape` arguments.
+
+:::
+
+The last `dist` field requires some details. Sometimes, the
 objects in contact are penetrating each other. Notably, if you are using
 **Parry** within the context of physics simulation, penetrations are
 unrealistic configurations where the inside of the two objects are overlapping.
