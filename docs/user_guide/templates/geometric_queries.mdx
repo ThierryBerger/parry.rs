@@ -367,7 +367,7 @@ A contact is described by the `Contact` structure:
 
 In context of `query::contact`, `point1` and `point2` are expressed in _absolute coordinates_: which are not relative
 to any object. But when using lower level functions like `contact_cuboid_cuboid`
-(typically functions taking a `pos12: &Isometry<f32>`), `point1` and `point2` are expressed in _relative coordinates_ to `Shape` arguments.
+(typically functions taking a `pos12: &Isometry<f32>`), `point1` and `point2` are expressed in _local coordinates_ to each `Shape` arguments.
 
 :::
 
